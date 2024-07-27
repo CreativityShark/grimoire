@@ -50,15 +50,19 @@ impl Spell {
     }
 }
 
+/// An enum representing the various ranges at which a spell can be cast.
+
 #[derive(Debug)]
-enum SpellRange {
+pub enum SpellRange {
     Oneself(),
     Touch(),
     Distance(u32),
 }
 
+/// An enum representing the various components used to cast a spell.
+
 #[derive(Debug)]
-enum SpellComponent {
+pub enum SpellComponent {
     Verbal(),
     Somatic(),
     Material(Vec<String>),
