@@ -1,3 +1,6 @@
+use SpellRange::*;
+use SpellComponent::*;
+
 #[derive(Debug)]
 pub struct Spell {
     name: String,
@@ -19,14 +22,14 @@ impl Spell {
 
     pub fn new() -> Spell {
         Spell {
-            name = String::from(""),
-            desc = String::from(""),
-            school = String::from(""),
-            range: Self(),
-            cast_time = 0,
-            duration = 0,
-            components = None,
-            prepared = false,
+            name: String::from(""),
+            desc: String::from(""),
+            school:  String::from(""),
+            range: Oneself(),
+            cast_time: 0,
+            duration: 0,
+            components: None,
+            prepared: false,
         }
     }
 
@@ -39,12 +42,14 @@ impl Spell {
     }
 }
 
+#[derive(Debug)]
 enum SpellRange {
-    Self(),
+    Oneself(),
     Touch(),
     Distance(u32),
 }
 
+#[derive(Debug)]
 enum SpellComponent {
     Verbal(),
     Somatic(),
