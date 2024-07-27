@@ -20,7 +20,7 @@ impl Spell {
         Ok(())
     }
 
-    pub fn new() -> Spell {
+    pub fn new() -> Self {
         Spell {
             name: String::from(""),
             desc: String::from(""),

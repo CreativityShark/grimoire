@@ -1,5 +1,6 @@
 use std::env;
 use std::process;
+use grimoire::spell;
 
 fn main() {
     let cmd = grimoire::build_command(env::args()).unwrap_or_else(|e| {

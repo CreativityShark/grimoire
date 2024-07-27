@@ -1,5 +1,8 @@
 use std::error::Error;
 
+pub mod spell;
+pub mod caster;
+
 pub fn run(command: Box<dyn Command>) -> Result<(), Box<dyn Error>> {
     command.run()?;
 
