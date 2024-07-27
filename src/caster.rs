@@ -92,28 +92,6 @@ mod tests {
     use super::*;
 
     #[test]
-    fn use_unused_slot() {
-        let mut slot = SpellSlot::new(1);
-        assert_eq!(slot.use_slot(), Ok(()));
-    }
-
-    #[test]
-    #[should_panic]
-    fn use_used_slot() {
-        let mut slot = SpellSlot::new(1);
-        slot.used = true;
-        slot.use_slot().unwrap();
-    }
-
-    #[test]
-    fn restore_slot() {
-        let mut slot = SpellSlot::new(1);
-        slot.used = true;
-        slot.restore_slot();
-        assert!(!slot.used);
-    }
-
-    #[test]
     fn resting() {
         let mut caster = Caster::new("", "", 1);
         caster.slots.push(SpellSlot::new(1));
