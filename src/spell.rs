@@ -3,8 +3,10 @@ pub struct Spell {
     name: String,
     desc: String,
     school: String,
+    range: SpellRange,
     cast_time: u32,
     duration: u32,
+    components: Option<Vec<SpellComponent>>,
     prepared: bool,
 }
 
@@ -20,8 +22,10 @@ impl Spell {
             name = String::from(""),
             desc = String::from(""),
             school = String::from(""),
+            range: Self(),
             cast_time = 0,
             duration = 0,
+            components = None,
             prepared = false,
         }
     }
@@ -33,4 +37,16 @@ impl Spell {
     pub fn unprepare(&mut self) {
         self.prepared = false;
     }
+}
+
+enum SpellRange {
+    Self(),
+    Touch(),
+    Distance(u32),
+}
+
+enum SpellComponent {
+    Verbal(),
+    Somatic(),
+    Material(Vec<String>),
 }
