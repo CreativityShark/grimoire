@@ -3,14 +3,14 @@ use SpellComponent::*;
 
 #[derive(Debug)]
 pub struct Spell {
-    name: String,
-    desc: String,
-    school: String,
-    range: SpellRange,
-    cast_time: u32,
-    duration: u32,
-    components: Option<Vec<SpellComponent>>,
-    prepared: bool,
+    pub name: String,
+    pub desc: String,
+    pub school: String,
+    pub range: SpellRange,
+    pub cast_time: u32,
+    pub duration: u32,
+    pub components: Option<Vec<SpellComponent>>,
+    pub prepared: bool,
 }
 
 impl Spell {

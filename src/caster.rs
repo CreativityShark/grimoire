@@ -2,11 +2,11 @@ use crate::spell;
 
 #[derive(Debug)]
 pub struct Caster {
-    name: String,
-    class: String,
-    level: u32,
-    spells: Vec<spell::Spell>,
-    slots: Vec<SpellSlot>,
+    pub name: String,
+    pub class: String,
+    pub level: u32,
+    pub spells: Vec<spell::Spell>,
+    pub slots: Vec<SpellSlot>,
 }
 
 impl Caster {
