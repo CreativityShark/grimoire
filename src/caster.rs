@@ -27,11 +27,24 @@ impl Caster {
     }
 }
 
-#[derive(Debug)]
-#[derive(PartialEq)]
+/// Representation of a spell slot used by `Caster`. Has basic functionality for using and
+/// restoring spell slots.
+///
+/// # Examples
+///
+/// ```
+/// use grimoire::caster::SpellSlot;
+///
+/// let mut slot = SpellSlot::new(2);
+/// slot.use_slot();
+///
+/// assert!(slot.used);
+/// ```
+
+#[derive(Debug, PartialEq)]
 pub struct SpellSlot {
-    level: u32,
-    used: bool,
+    pub level: u32,
+    pub used: bool,
 }
 
 impl SpellSlot {
@@ -39,6 +52,16 @@ impl SpellSlot {
         SpellSlot { level, used: false }
     }
 
+    /// Sets `used` to true. If the spell slot has already been used, the method will return an
+    /// error.
+    ///
+    /// ```should_panic
+    /// // This code will panic!
+    /// # use grimoire::caster::SpellSlot;
+    /// # let mut slot = SpellSlot::new(1);
+    /// slot.used = true;
+    /// slot.use_slot().unwrap();
+    /// ```
     pub fn use_slot(&mut self) -> Result<(), &'static str> {
         if self.used {
             return Err("Spell slot has already been used!");
@@ -48,6 +71,17 @@ impl SpellSlot {
         Ok(())
     }
 
+    /// Sets `used` to false. Unlike `use_slot()`, this method will not return an error if the slot
+    /// is still unused.
+    ///
+    /// ```
+    /// # use grimoire::caster::SpellSlot;
+    /// # let mut slot = SpellSlot::new(1);
+    /// slot.used = true;
+    /// slot.restore_slot();
+    ///
+    /// assert!(!slot.used);
+    /// ```
     pub fn restore_slot(&mut self) {
         self.used = false;
     }
