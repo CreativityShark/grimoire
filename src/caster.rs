@@ -6,20 +6,29 @@ pub struct Caster {
     class: String,
     level: u32,
     spells: Vec<spell::Spell>,
+    slots: Vec<SpellSlot>,
 }
 
 impl Caster {
-    pub fn build(name: &str, class: &str, level: u32) -> Self {
+    pub fn new(name: &str, class: &str, level: u32) -> Self {
         Caster {
             name: String::from(name),
             class: String::from(class),
             level,
             spells: vec!(),
+            slots: vec!(),
+        }
+    }
+
+    pub fn rest(&mut self) {
+        for mut slot in &mut self.slots {
+            slot.restore_slot();
         }
     }
 }
 
 #[derive(Debug)]
+#[derive(PartialEq)]
 pub struct SpellSlot {
     level: u32,
     used: bool,
@@ -68,5 +77,15 @@ mod tests {
         slot.used = true;
         slot.restore_slot();
         assert!(!slot.used);
+    }
+
+    #[test]
+    fn resting() {
+        let mut caster = Caster::new("", "", 1);
+        caster.slots.push(SpellSlot::new(1));
+        caster.slots.push(SpellSlot::new(1));
+        caster.slots[1].use_slot().unwrap();
+        caster.rest();
+        assert_eq!(caster.slots, vec!(SpellSlot { level: 1, used: false }, SpellSlot{ level: 1, used: false }));
     }
 }
