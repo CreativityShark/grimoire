@@ -1,6 +1,14 @@
 use SpellRange::*;
 use SpellComponent::*;
 
+/// Representation of a spell that provides functionality for updating information about the spell
+/// and the spell caster once the spell is cast.
+///
+/// # Examples
+/// ```
+/// // Insert good example here!
+/// ```
+
 #[derive(Debug)]
 pub struct Spell {
     pub name: String,
