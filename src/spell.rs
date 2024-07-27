@@ -56,6 +56,7 @@ impl Spell {
 pub enum SpellRange {
     Oneself(),
     Touch(),
+    /// Contains the spell's range in feet as an unsigned integer.
     Distance(u32),
 }
 
