@@ -1,5 +1,14 @@
 use crate::spell;
 
+/// Representation of a player character that can cast spells. Keeps track of spells and spell
+/// slots and has functionality for resting to regain spell slots.
+///
+/// # Examples
+///
+/// ```
+/// // I'll add a good example once i flesh out the functionality a bit more.
+/// ```
+
 #[derive(Debug)]
 pub struct Caster {
     pub name: String,
