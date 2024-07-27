@@ -29,4 +29,44 @@ impl SpellSlot {
     pub fn new(level: u32) -> Self {
         SpellSlot { level, used: false }
     }
+
+    pub fn use_slot(&mut self) -> Result<(), &'static str> {
+        if self.used {
+            return Err("Spell slot has already been used!");
+        }
+        self.used = true;
+
+        Ok(())
+    }
+
+    pub fn restore_slot(&mut self) {
+        self.used = false;
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn use_unused_slot() {
+        let mut slot = SpellSlot::new(1);
+        assert_eq!(slot.use_slot(), Ok(()));
+    }
+
+    #[test]
+    #[should_panic]
+    fn use_used_slot() {
+        let mut slot = SpellSlot::new(1);
+        slot.used = true;
+        slot.use_slot().unwrap();
+    }
+
+    #[test]
+    fn restore_slot() {
+        let mut slot = SpellSlot::new(1);
+        slot.used = true;
+        slot.restore_slot();
+        assert!(!slot.used);
+    }
 }
